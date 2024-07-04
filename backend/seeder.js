@@ -8,29 +8,18 @@ import Product from './models/productModel.js';
 import Order from './models/orderModel.js';
 import connectDB from './config/db.js';
 
-console.log('hey')
-
 dotenv.config();
 
-
-connectDB();
+await connectDB();
 
 const importData = async () => {
-  console.log('here before tc')
-
   try {
 
-    console.log('here 0')
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
 
-    console.log('here')
-
     const createdUsers = await User.insertMany(users);
-
-    console.log('here 2')
-
 
     const adminUser = createdUsers[0]._id;
 
